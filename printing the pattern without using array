@@ -1,0 +1,43 @@
+#include <stdio.h>
+#include <ctype.h>
+
+void generate_output(char input[]) {
+    int i = 0;
+    
+    while (input[i] != '\0') {
+        char current_char = input[i];
+
+        if (isalpha(current_char)) {
+            printf("%c", current_char);
+            i++;
+        } else {
+            int count = 0;
+            while (isdigit(input[i])) {
+                count = count * 10 + (input[i] - '0');
+                i++;
+            }
+
+            for (int j = 0; j < count; j++) {
+                printf("%c", current_char);
+            }
+        }
+    }
+
+    printf("\n");
+}
+
+int main() {
+    // Sample Input 1
+    char input1[] = "a1b10";
+    printf("Input: %s\n", input1);
+    printf("Output: ");
+    generate_output(input1);
+
+    // Sample Input 2
+    char input2[] = "b3c6d15";
+    printf("\nInput: %s\n", input2);
+    printf("Output: ");
+    generate_output(input2);
+
+    return 0;
+}
